@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Ticket Booking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hdr">
+    <h1>Movie Ticket Booking System</h1>
+    <p>Choose your movie, pick a showtime, and book tickets!</p>
+  </header>
+  <div class="main">
+    <div class="left">
+      <div class="box">
+        <h3>Available Movies</h3>
+        <div class="movies" id="m-list"></div>
+      </div>
+      <div class="box">
+        <h3>Book Your Tickets</h3>
+        <form id="bk-form">
+          <div class="row">
+            <div class="group">
+              <label>Select Movie</label>
+              <select id="m-select">
+                <option value="">-- Choose Movie --</option>
+              </select>
+            </div>
+            <div class="group">
+              <label>Select Showtime</label>
+              <select id="t-select">
+                <option value="">-- Choose Showtime --</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="02:30 PM">02:30 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="09:30 PM">09:30 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="group">
+              <label>Email Address</label>
+              <input type="email" id="u-email" placeholder="Enter your email">
+            </div>
+            <div class="group">
+              <label>Number of Tickets</label>
+              <input type="number" id="u-qty" placeholder="Enter quantity">
+            </div>
+          </div>
+          <div class="btns">
+            <button type="submit" class="btn btn-book">Book Tickets</button>
+            <button type="button" class="btn btn-rst" id="rst-btn">Reset</button>
+          </div>
+          <div id="alert" class="alert hide"></div>
+          <div class="total-bar">
+            <span>Total Price:</span>
+            <strong id="price-tag">₹0</strong>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="right">
+      <div class="box">
+        <h3 id="bk-title">Your Bookings (0)</h3>
+        <input type="text" id="srch" class="srch" placeholder="Search by movie name...">
+        <div id="bookings" class="bookings"></div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
