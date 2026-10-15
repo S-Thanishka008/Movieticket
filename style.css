@@ -5,13 +5,17 @@
   font-family: 'Courier New', Courier, monospace;
 }
 body{
-  background-color: #eaf7ed;
+  background: linear-gradient(180deg,#80a4d4,#eaf7ed);
+  min-width: 100vh;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: #2b2756;
 }
 .hdr{
-  background-color: #ffffff;
+  background: linear-gradient(180deg,#eaf7ed,#80a4d4);
   border-bottom: 2px solid #80a4d4;
   padding: 24px 30px;
+  
 }
 .hdr h1{
   color: #7b75c9;
@@ -36,7 +40,7 @@ body{
 }
 .box {
   background: #ffffff;
-  border: 1.5px solid #c8e8f0;
+  border: 1.5px solid #161e20;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
