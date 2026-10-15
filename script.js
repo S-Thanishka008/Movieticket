@@ -1,10 +1,15 @@
 var movies = [
-  { id: 1, title: "Inception", price: 180 },
+  { id: 1, title: "Inception", price: 180},
   { id: 2, title: "Oppenheimer", price: 200 },
   { id: 3, title: "Tenet", price: 160 },
-  { id: 4, title: "Interstellar", price: 190 },
-  { id: 5, title: "The Odyssey", price: 250 },
-];
+  { id: 4, title: "Interstellar" ,price:190},
+  { id: 5, title: "The Odyssey",price:250},
+  { id: 6, title: "Dune", price: 220},
+  { id: 7, title: "The Dark Knight", price: 210 },
+  { id: 8, title: "Avengers: Endgame", price: 240 },
+  { id: 9, title: "Avengers: Infinity War", price: 230 },
+  { id: 10, title: "Avatar", price: 200 },
+  { id: 11, title: "3 Body Problem", price: 170 }];
 var bookings = [];
 var mList = document.getElementById("m-list");
 var mSelect = document.getElementById("m-select");
@@ -18,20 +23,17 @@ var priceTag = document.getElementById("price-tag");
 var bkTitle = document.getElementById("bk-title");
 var srchInput = document.getElementById("srch");
 var bkList = document.getElementById("bookings");
+
 function showMovies() {
+  mSelect.innerHTML = '<option value="">-- Choose Movie --</option>'; 
   for (var i = 0; i < movies.length; i++) {
-    mList.innerHTML += `
-      <div class="m-card">
-        <h4>${movies[i].title}</h4>
-        <p>₹${movies[i].price}</p>
-      </div>
-    `;
     mSelect.innerHTML +=
       '<option value="' + movies[i].id + '">' +
       movies[i].title + " (₹" + movies[i].price + ")" +
       "</option>";
   }
 }
+
 function calcPrice() {
   var movieId = parseInt(mSelect.value);
   var qty = parseInt(uQty.value);
@@ -46,10 +48,12 @@ function calcPrice() {
   }
   priceTag.innerText = "₹0";
 }
+
 function showMsg(text, type) {
   alertBox.innerText = text;
   alertBox.className = "alert " + type;
 }
+
 function showBookings(searchWord) {
   bkTitle.innerText = "Your Bookings (" + bookings.length + ")";
   bkList.innerHTML = "";
@@ -70,6 +74,7 @@ function showBookings(searchWord) {
     bkList.innerHTML += '<div class="bk-item">' + "<div>" + "<h5>" + item.movie + "</h5>" + "<p>Time: " + item.time + " | Tickets: " + item.qty + "</p>" + "<p>Total: ₹" + item.total + " | " + item.email + "</p>" + "</div>" + '<button type="button" class="btn-del" onclick="cancelBooking(' + item.id + ')">Cancel</button>' + "</div>";
   }
 }
+
 function cancelBooking(id) {
   var newBookings = [];
   for (var i = 0; i < bookings.length; i++) {
@@ -81,11 +86,13 @@ function cancelBooking(id) {
   showBookings(srchInput.value);
   showMsg("Booking cancelled.", "ok");
 }
+
 function resetForm() {
   bkForm.reset();
   priceTag.innerText = "₹0";
   alertBox.className = "alert hide";
 }
+
 function handleBooking(e) {
   if (e) {
     e.preventDefault();
@@ -94,6 +101,7 @@ function handleBooking(e) {
   var time = tSelect.value;
   var email = uEmail.value.trim();
   var qty = parseInt(uQty.value);
+
   if (!movieId || !time || !email || !uQty.value) {
     showMsg("Please fill in all details.", "err");
     return false;
@@ -116,12 +124,57 @@ function handleBooking(e) {
     }
   }
   var total = moviePrice * qty;
-  var newOrder = {id: Date.now(), movie: movieName, time: time, email: email, qty: qty, total: total};
+  var newOrder = { id: Date.now(), movie: movieName, time: time, email: email, qty: qty, total: total };
   bookings.push(newOrder);
   showBookings(srchInput.value);
-  resetForm();
-  showMsg("Booking confirmed for " + movieName + "!", "ok");
-  return false;
+
+  var emailParams = {
+    to_email: email,       
+    user_email: email,     
+    movie_name: movieName,
+    showtime: time,
+    tickets: qty,
+    total_price: total
+  };
+
+  emailjs.send("service_1akdzqa", "template_r372h6v", emailParams)
+      .then(function(response) {
+        console.log("Email sent successfully!", response.status, response.text);
+      }, function(error) {
+        console.error("Failed to send email...", error);
+      });
+    resetForm();
+    showMsg("Booking confirmed for " + movieName + "!", "ok");
+    return false;
+}
+var isDown = false;
+var startX;
+var scrollLeftVal;
+if (mList) {
+  mList.addEventListener("mousedown", function(e) {
+    isDown = true;
+    mList.classList.add("active");
+    startX = e.pageX - mList.offsetLeft;
+    scrollLeftVal = mList.scrollLeft;
+  });
+
+  mList.addEventListener("mouseleave", function() {
+    isDown = false;
+    mList.classList.remove("active");
+  });
+
+  mList.addEventListener("mouseup", function() {
+    isDown = false;
+    mList.classList.remove("active");
+  });
+
+  mList.addEventListener("mousemove", function(e) {
+    if (!isDown) return;
+    e.preventDefault();
+    var x = e.pageX - mList.offsetLeft;
+    var walk = (x - startX) * 2;
+    mList.scrollLeft = scrollLeftVal - walk;
+  });
 }
 mSelect.addEventListener("change", calcPrice);
 uQty.addEventListener("input", calcPrice);

@@ -10,12 +10,59 @@
     <h1>Movie Ticket Booking System</h1>
     <p>Choose your movie, pick a showtime, and book tickets!</p>
   </header>
+  <div class="top-section">
+    <div class="box">
+      <h3>Now Showing</h3>
+      <div class="movies" id="m-list">
+        <div class="m-card card-inception">
+          <h4>Inception</h4>
+          <p>₹180</p>
+        </div>
+        <div class="m-card card-oppenheimer">
+          <h4>Oppenheimer</h4>
+          <p>₹200</p>
+        </div>
+        <div class="m-card card-tenet">
+          <h4>Tenet</h4>
+          <p>₹160</p>
+        </div>
+        <div class="m-card card-interstellar">
+          <h4>Interstellar</h4>
+          <p>₹190</p>
+        </div>
+        <div class="m-card card-odyssey">
+          <h4>The Odyssey</h4>
+          <p>₹250</p>
+        </div>
+        <div class="m-card card-dune">
+          <h4>Dune</h4>
+          <p>₹220</p>
+        </div>
+        <div class="m-card card-darkknight">
+          <h4>The Dark Knight</h4>
+          <p>₹210</p>
+        </div>
+        <div class="m-card card-endgame">
+          <h4>Avengers: Endgame</h4>
+          <p>₹240</p>
+        </div>
+        <div class="m-card card-infinitywar">
+          <h4>Avengers: Infinity War</h4>
+          <p>₹230</p>
+        </div>
+        <div class="m-card card-avatar">
+          <h4>Avatar</h4>
+          <p>₹200</p>
+        </div>
+        <div class="m-card card-3bodyproblem">
+          <h4>3 Body Problem</h4>
+          <p>₹170</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="main">
     <div class="left">
-      <div class="box">
-        <h3>Available Movies</h3>
-        <div class="movies" id="m-list"></div>
-      </div>
       <div class="box">
         <h3>Book Your Tickets</h3>
         <form id="bk-form">
@@ -67,6 +114,12 @@
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("AE6SBTEERuwCmQmbY");
+    })();
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
