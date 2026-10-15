@@ -1,6 +1,6 @@
 var movies = [
   { id: 1, title: "Inception", price: 180 },
-  { id: 2, title: "Avengers:Age of Ultron", price: 200 },
+  { id: 2, title: "Oppenheimer", price: 200 },
   { id: 3, title: "Tenet", price: 160 },
   { id: 4, title: "Interstellar", price: 190 },
   { id: 5, title: "The Odyssey", price: 250 },
