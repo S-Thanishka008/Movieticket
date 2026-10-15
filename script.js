@@ -20,7 +20,6 @@ var srchInput = document.getElementById("srch");
 var bkList = document.getElementById("bookings");
 function showMovies() {
   for (var i = 0; i < movies.length; i++) {
-    // Add to movies display box
     mList.innerHTML += `
       <div class="m-card">
         <h4>${movies[i].title}</h4>
@@ -68,15 +67,7 @@ function showBookings(searchWord) {
   }
   for (var j = 0; j < filtered.length; j++) {
     var item = filtered[j];
-    bkList.innerHTML +=
-      '<div class="bk-item">' +
-      "<div>" +
-      "<h5>" + item.movie + "</h5>" +
-      "<p>Time: " + item.time + " | Tickets: " + item.qty + "</p>" +
-      "<p>Total: ₹" + item.total + " | " + item.email + "</p>" +
-      "</div>" +
-      '<button type="button" class="btn-del" onclick="cancelBooking(' + item.id + ')">Cancel</button>' +
-      "</div>";
+    bkList.innerHTML += '<div class="bk-item">' + "<div>" + "<h5>" + item.movie + "</h5>" + "<p>Time: " + item.time + " | Tickets: " + item.qty + "</p>" + "<p>Total: ₹" + item.total + " | " + item.email + "</p>" + "</div>" + '<button type="button" class="btn-del" onclick="cancelBooking(' + item.id + ')">Cancel</button>' + "</div>";
   }
 }
 function cancelBooking(id) {
