@@ -64,7 +64,7 @@ body {
 }
 .m-card {
   flex: 0 0 200px;
-  height: 250px;
+  height: 350px;
   background-size: cover;
   background-position: center;
   border: 1.5px solid #80a4d4;
