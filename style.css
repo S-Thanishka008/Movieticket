@@ -7,7 +7,7 @@
 body {
   background: linear-gradient(135deg, #eaf7ed, #9fe2ee, #80a4d4, #7b75c9);
   background-size: 300% 300%;
-  animation: serene 12s ease infinite;
+  animation: serene 7s ease-in-out infinite;
   min-height: 100vh;
   color: #2b2756;
 }
